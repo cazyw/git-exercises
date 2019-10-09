@@ -118,3 +118,14 @@ git push origin --delete branch-name
 // adding alias commands
 git config --global alias.lg "log --oneline --graph --all"
 ```
+
+# Rebase
+
+Use this if you have been working locally and have not already pushed up your branch
+
+```
+// rewind back to the base (point where branch started)
+// moves to the tip of the master branch
+// add the feature branch commits
+git rebase master
+```
