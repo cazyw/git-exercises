@@ -111,3 +111,10 @@ git branch -d branch-name
 // remote branch
 git push origin --delete branch-name
 ```
+
+### Aliases
+
+```
+// adding alias commands
+git config --global alias.lg "log --oneline --graph --all"
+```
