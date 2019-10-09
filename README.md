@@ -92,3 +92,22 @@ git ls-files
  git ls-files -o
 
 ```
+
+### Branches
+
+```
+// list all branchs (local and remote)
+git branch -a
+
+// create branch
+git branch branch-name
+
+// create branch and switch to it
+git checkout -b branch-name
+
+// local branch
+git branch -d branch-name
+
+// remote branch
+git push origin --delete branch-name
+```
