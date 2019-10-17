@@ -37,6 +37,12 @@ git commit -m "50 character subject
 
 and additional text to explain why changes are required
 if necessary"
+
+// amend a commit
+git commit --amend
+
+// to force push an amended commit to the remote (WARNING)
+git push -f
 ```
 
 ### Discarding changes
@@ -62,6 +68,9 @@ git diff
 git diff --staged
 or
 git diff --cached
+
+// compare the differences between two commits
+git diff commitA commitB
 ```
 
 ### Logs
@@ -105,11 +114,19 @@ git branch branch-name
 // create branch and switch to it
 git checkout -b branch-name
 
-// local branch
+// switch between branches
+git checkout branch-name
+
+// delete local branch
 git branch -d branch-name
 
-// remote branch
-git push origin --delete branch-name
+// delete remote branch
+git push origin -d branch-name
+
+// pull down a remote branch
+// this creates a local branch that tracks the remote branch specified
+git checkout -t origin/remote-branch
+
 ```
 
 ### Aliases
@@ -128,4 +145,52 @@ Use this if you have been working locally and have not already pushed up your br
 // moves to the tip of the master branch
 // add the feature branch commits
 git rebase master
+```
+
+### Undos
+
+Roll back any changes in working tree
+
+```
+// discard any changes for a file or pattern
+// (roll back to last commit state for this file)
+git checkout -- file.txt
+git checkout -- file*
+```
+
+Unstage files
+
+```
+// unstage all the files
+git reset HEAD
+
+// unstage one file
+git reset HEAD file.txt
+
+// roll back to the state as at previous commit
+// not only unstages but deletes changes and new files that are tracked
+// any untracked changes remain as is
+git reset HEAD --hard
+```
+
+Roll back committed changes (that have been pushed) and do not change history
+
+```
+// roll back the last change
+// (inverse the changes and create a new commit)
+git revert HEAD
+
+// if there are issues with reverting
+git revert --abort
+
+// roll back the last 2 commits
+// inverse the changes one at a time and commit the changes one at a time
+git revert HEAD~2..
+
+// roll back the last 3 commits
+// this will leave the changes in the working tree
+// you will then be able to lummp these changes into the one change commit
+git revert --no-commit HEAD~3..
+git revert --continue
+
 ```
