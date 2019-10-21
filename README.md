@@ -91,6 +91,15 @@ git log --decorate (--decorate=short [default] --decorate=full)
 git log --all --graph --decorate --oneline
 ```
 
+### Stashing
+
+```
+git stash
+git pop
+git stash list
+git stash show -p "stash@{0}" (quotes needed for windows)
+```
+
 ### Tracking Files
 
 ```
@@ -156,6 +165,27 @@ Roll back any changes in working tree
 // (roll back to last commit state for this file)
 git checkout -- file.txt
 git checkout -- file*
+```
+
+Check the state at a particular point in time
+
+```
+git checkout <commit>
+
+// to re-attach to master when no changes
+git checkout master
+
+// if changes and committed them
+// option 1
+git commit -am "committing detached work"
+git checkout master
+git cherry-pick <detached commit>
+
+// if changes and not yet committed
+// option 2
+git stash
+git checkout paster
+git stash pop
 ```
 
 Unstage files
